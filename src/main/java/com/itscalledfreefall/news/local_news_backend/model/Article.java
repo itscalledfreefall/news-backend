@@ -16,7 +16,6 @@ public class Article {
     private Long id;
 
     private String title;
-    private String slug;
 
     @Column(columnDefinition = "TEXT")
     private String content;
@@ -26,40 +25,14 @@ public class Article {
 
     private String author;
     private LocalDateTime publishedAt;
-    private LocalDateTime updatedAt;
-    private boolean featured;
-    private boolean breaking;
     private Integer viewCount;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MediaItem> mediaItems = new ArrayList<>();
 
     //  Article -> ArticleTag -> Tag
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ArticleTag> articleTags = new ArrayList<>();
 
-    @PrePersist
-    protected void onCreate() {
-        updatedAt = LocalDateTime.now();
-    }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
 
-    // tag add
-    public void addTag(Tag tag) {
-        ArticleTag articleTag = new ArticleTag();
-        articleTag.setArticle(this);
-        articleTag.setTag(tag);
-        articleTag.setTaggedAt(LocalDateTime.now());
-        articleTags.add(articleTag);
-    }
-
-    // tag delete
-    public void removeTag(Tag tag) {
-        articleTags.removeIf(articleTag -> articleTag.getTag().equals(tag));
-    }
 }
 

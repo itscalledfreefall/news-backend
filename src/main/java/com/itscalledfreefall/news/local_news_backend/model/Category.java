@@ -17,7 +17,6 @@ public class Category {
     private Long id;
 
     private String categoryName;
-    private String slug;
     private String description;
 
     @ManyToOne
