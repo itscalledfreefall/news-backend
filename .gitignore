@@ -16,4 +16,5 @@ Thumbs.db
 
 # Java project settings
 *.iml
+*.properties
 
