@@ -23,9 +23,6 @@ public class ArticleService {
         return articleRepo.findById(id);
     }
 
-    public Article saveArticle(Article article){
-        return  articleRepo.save(article);
-    }
     public void deleteByIdArticle(Long id){
          articleRepo.deleteById(id);
     }
