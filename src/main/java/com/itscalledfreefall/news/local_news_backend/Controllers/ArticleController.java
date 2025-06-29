@@ -1,14 +1,18 @@
 package com.itscalledfreefall.news.local_news_backend.Controllers;
 
 
+import com.itscalledfreefall.news.local_news_backend.Dto.ArticleDTO;
 import com.itscalledfreefall.news.local_news_backend.model.Article;
 import com.itscalledfreefall.news.local_news_backend.services.ArticleService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Stack;
 
 @RestController
 @RequestMapping("/api/articles")
@@ -21,15 +25,15 @@ public class ArticleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Article>> getAllArticles(){
-        List<Article> articles = service.getAllArticles();
-        return ResponseEntity.ok(articles);
+    public ResponseEntity<Page<ArticleDTO>> getAllArticles(Pageable pageable){
+        Page<ArticleDTO> articlesPage = service.getAllArticles(pageable);
+        return ResponseEntity.ok(articlesPage);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Article> getArticleById(@PathVariable Long id){
+    public ResponseEntity<ArticleDTO> getArticleById(@PathVariable Long id){
 
-        Optional<Article> article = service.getArticleById(id);
-        return article.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());}
+        Optional<ArticleDTO> articleDto = service.getArticleById(id);
+        return articleDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());}
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteByIdArticle(@PathVariable Long id ){

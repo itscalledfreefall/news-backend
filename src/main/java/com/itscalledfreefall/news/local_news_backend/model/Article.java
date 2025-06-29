@@ -1,6 +1,8 @@
 package com.itscalledfreefall.news.local_news_backend.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -15,13 +17,15 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Title cannot be blank")
+    @Size(max =220, message = "title is above 220 character please shorten it! ")
     private String title;
 
-    @Column(columnDefinition = "TEXT")
-    private String content;
 
-    @Column(length = 500)
-    private String summary;
+    @NotBlank(message = "content column cannot be blank")
+    @Column(columnDefinition = "TEXT")
+    @Size(min = 25,message = "content must be at least 25 characters")
+    private String content;
 
     private String author;
     private LocalDateTime publishedAt;
