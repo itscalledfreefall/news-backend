@@ -20,7 +20,7 @@ public class MediaItem {
 
     private String title;
     private String fileName;
-    private String fileType;    // Örn: "IMAGE", "VIDEO", vb.
+    private String fileType;
     private String url;
     private String thumbnailUrl;
     private String altText;

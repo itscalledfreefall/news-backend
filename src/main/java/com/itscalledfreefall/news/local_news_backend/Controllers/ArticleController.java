@@ -2,7 +2,7 @@ package com.itscalledfreefall.news.local_news_backend.Controllers;
 
 
 import com.itscalledfreefall.news.local_news_backend.Dto.ArticleDTO;
-import com.itscalledfreefall.news.local_news_backend.model.Article;
+
 import com.itscalledfreefall.news.local_news_backend.services.ArticleService;
 
 import org.springframework.data.domain.Page;
@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.Optional;
-import java.util.Stack;
+
 
 @RestController
 @RequestMapping("/api/articles")

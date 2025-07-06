@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/media")
 public class MediaController {
-    //maybe in the future
+
 }
